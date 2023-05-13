@@ -1,6 +1,5 @@
 import argparse
 from pathlib import Path
-from rich import inspect
 
 class JobConfig:
 
@@ -35,7 +34,6 @@ class JobConfig:
         
     def load(self):
         args = self.parser.parse_args()
-        inspect(args)
         
         self.query_string = args.QUERY_STRING
         self.processed_dest_path = args.PROCESSED_DATA_DESITNATION
