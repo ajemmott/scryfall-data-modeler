@@ -10,6 +10,8 @@ A tool to perform card data queries to the scryfall API from the command line, s
 ---
 **ajemmott - 2023/05/17**
 - Enabled functionality to store the raw API response as json.  
-    ```$<path to script> PROCESSED_DATA_DESTINATION_FILE [-r RAW_DATA_DESTINATION_FILE]```
+    ```
+    $<path to script> PROCESSED_DATA_DESTINATION_FILE [-r RAW_DATA_DESTINATION_FILE]
+    ```
 - `PROCESSED_DATA_DESTINATION_FILE` is currently unused.
 
