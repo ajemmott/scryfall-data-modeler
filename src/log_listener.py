@@ -7,7 +7,7 @@ def handle_on_config_done(data_task):
         logger.info(f"\n\tA copy of the raw query response will be stored in {data_task.config.raw_dest_path.resolve()}")   
 
 def handle_bad_request(client):
-    logger.error(f"""\n\tRequest failed. The following details were given by the API \"{client.response_data['details']}\".""")
+    logger.error(f"\n\tRequest failed. The following details were given by the API \"{client.response_data['details']}\".")
 
 def handle_warnings_found(client):
     for index, warning in client.response_warnings:
