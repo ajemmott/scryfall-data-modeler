@@ -14,7 +14,7 @@ class DataTask:
         self.event_stack = {
             'CONFIG': self.events.on_init_done,
             'REQUEST': self.events.on_config_done,
-            'STRUCTURE': self.events.on_request_data_obtained,
+        #     'STRUCTURE': self.events.on_request_data_obtained,
         }
         
         for event, function in self.event_stack.items():
