@@ -1,14 +1,11 @@
-from event_system import EventSystem
-from job_config import JobConfig
-from api_client import ApiClient
-from rich import inspect
-
-
+#%%
+from data_task import DataTask
+import sys
 
 def main():
-    event_system = EventSystem()
-    config = JobConfig(event_system.events)
-
+    data_task = DataTask()
+    data_task.start()
     
 if __name__ == '__main__':
     main()
+# %%
