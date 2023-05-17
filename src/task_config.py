@@ -1,16 +1,9 @@
 import argparse
 from pathlib import Path
 
-class JobConfig:
+class TaskConfig:
 
-    def __init__(self, events):
-        self.events = events
-        self.build_parser()        
-        self.load_config()
-        self.events.on_job_configured(self)
-        
-    
-    def build_parser(self):
+    def __init__(self):
         self.parser = argparse.ArgumentParser(
             description=("request, process, and store the results of "
                          "card data queries to scryfall's API"))
@@ -38,7 +31,5 @@ class JobConfig:
         args = self.parser.parse_args()
         
         self.query_string = args.QUERY_STRING
-        self.processed_dest_path = args.PROCESSED_DATA_DESITNATION
-        self.raw_dest_path = args.raw_output
-        
-        return
+        self.processed_dest_path = args.PROCESSED_DATA_DESITNATION.resolve()
+        self.raw_dest_path = args.raw_output.resolve()
