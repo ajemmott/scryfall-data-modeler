@@ -26,7 +26,7 @@ class ApiClient:
         self.response_data = response_content['data']
         
         if response_content['has_more']:
-            next_pages = self.aggregate_paginated_data(response_content.next_page)
+            next_pages = self.aggregate_paginated_data(response_content['next_page'])
             self.response_data += next_pages
             
         return
