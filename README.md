@@ -4,7 +4,6 @@
 A tool to perform card data queries to the scryfall API from the command line, structuring and cleaning the response to store it locally as a resource for data analysis.
 
 ## Changelog
----
 **ajemmott - 2023/05/11**
 - Began project
 ---
@@ -14,4 +13,6 @@ A tool to perform card data queries to the scryfall API from the command line, s
     $<path to script> QUERY_STRING PROCESSED_DATA_DESTINATION_FILE [-r RAW_DATA_DESTINATION_FILE]
     ```
 - `PROCESSED_DATA_DESTINATION_FILE` is currently unused.
-
+---
+**ajemmott - 2023/05/18**
+- The raw response data json file now contains all pages of the response data.
