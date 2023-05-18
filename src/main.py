@@ -1,6 +1,4 @@
-#%%
 from data_task import DataTask
-import sys
 
 def main():
     data_task = DataTask()
@@ -8,4 +6,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-# %%
