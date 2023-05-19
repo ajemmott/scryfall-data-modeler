@@ -15,7 +15,7 @@ def handle_log_on_warnings_found(data_task):
         
 def handle_log_on_raw_save_failed(data_task):
     logger.error(f'\n\tCould not write a file to store the raw response data on given path {data_task.config.raw_dest_path}')
-    
+
 def setup_log_event_handlers(events):
     events.on_config_done += handle_log_on_config_done
     events.on_bad_request += handle_log_on_bad_request
