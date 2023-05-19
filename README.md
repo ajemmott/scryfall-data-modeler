@@ -16,3 +16,6 @@ A tool to perform card data queries to the scryfall API from the command line, s
 ---
 **ajemmott - 2023/05/18**
 - The raw response data json file now contains all pages of the response data.
+---
+**ajemmott - 2023/05/19**
+- Started development for the data structuring functionality
