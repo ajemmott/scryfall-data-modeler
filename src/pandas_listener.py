@@ -39,7 +39,7 @@ def handle_pandas_on_unpacking_trigger(data_task):
     data_task.processor.df = (
         data_task.processor.df
             .apply(
-                utils.get_normal_uri,
+                utils.extract_image_uris,
                 axis='columns')
             .drop(
                 columns='image_uris')
@@ -65,8 +65,18 @@ def handle_pandas_on_unpacking_trigger(data_task):
             ~ data_task.processor.df[col].isna())
         
     data_task.processor.df.info()
+    
+def handle_pandas_on_save_data_trigger(data_task):
+    try:
+        data_task.processor.df.to_csv(
+            data_task.config.processed_dest_path,
+            index=False)
+        data_task.events.on_processed_save_succeeded(data_task)
+    except Exception:
+        data_task.events.on_processed_save_failed(data_task)
 
 def setup_pandas_event_handlers(events):
     events.on_processor_init += handle_pandas_on_processor_init
     events.on_dfcs_found += handle_pandas_on_dfcs_found
     events.on_unpacking_trigger += handle_pandas_on_unpacking_trigger
+    events.on_save_data_trigger += handle_pandas_on_save_data_trigger

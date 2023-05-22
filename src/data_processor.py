@@ -13,3 +13,6 @@ class DataProcessor:
     
     def unpack_composite_features(self):
         self.parent_task.events.on_unpacking_trigger(self.parent_task)
+    
+    def save_structured_data(self):
+        self.parent_task.events.on_save_data_trigger(self.parent_task)

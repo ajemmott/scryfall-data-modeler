@@ -24,6 +24,7 @@ def handle_tasks_on_request_done(data_task):
     processor.build_dataframe()
     processor.check_for_dfcs()
     processor.unpack_composite_features()
+    processor.save_structured_data()
     
     
 def setup_task_event_handlers(events):

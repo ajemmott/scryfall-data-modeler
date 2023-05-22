@@ -86,8 +86,9 @@ def set_mdfc_cmc(row):
     return row
 
 # Defining a function to extract normal image uris
-def get_normal_uri(row):
-    row['normal_image_uri'] = row['image_uris']['normal']
+def extract_image_uris(row):
+    for k, v in row['image_uris'].items():
+        row[f'{k}_image_uri'] = v
     return row
 
 # Defining a function to parse the type data from the type_line column

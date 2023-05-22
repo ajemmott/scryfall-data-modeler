@@ -36,7 +36,7 @@ class ApiClient:
         try:
             with open(self.parent_task.config.raw_dest_path, 'w') as f:
                 f.write(json_data)
-                
+            self.parent_task.events.on_raw_save_succeeded(self.parent_task)
         except Exception:
             self.parent_task.events.on_raw_save_failed(self.parent_task)
         return
