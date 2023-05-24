@@ -2,16 +2,17 @@ import re
 
 def eval_user_input(response):
     
-        affirmative_res = re.match(r'^(.[Yy]|Yes|yes|1)$', response)
-        negative_res = re.match(r'^(.[Nn]|No|no|0)$', response)
+    negative_res = re.match(r'^([Nn]|No|no|0)$', response)
         
-        if negative_res:
-            return 'negative'
+    if negative_res:
+        return 'negative'
+    
+    affirmative_res = re.match(r'^([Yy]|Yes|yes|1)$', response)
+    
+    if not affirmative_res:
+        return 'uncertain'
         
-        if not affirmative_res:
-            return 'uncertain'
-        
-        return 'affirmative'
+    return 'affirmative'
         
 
 def handle_io_on_warnings_found(data_task):
