@@ -72,7 +72,8 @@ def handle_pandas_on_save_data_trigger(data_task):
             data_task.config.processed_dest_path,
             index=False)
         data_task.events.on_processed_save_succeeded(data_task)
-    except Exception:
+    except Exception as e:
+        data_task.caught_exception = e
         data_task.events.on_processed_save_failed(data_task)
 
 def setup_pandas_event_handlers(events):

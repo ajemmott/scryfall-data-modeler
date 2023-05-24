@@ -29,11 +29,13 @@ def handle_log_on_response_ok(data_task):
         
 def handle_log_on_raw_save_failed(data_task):
     logger.error(f'Could not write a file to store the raw response data '
-                 f'on given path {data_task.config.raw_dest_path}')
+                 f'on given path {data_task.config.raw_dest_path}. '
+                 f'{data_task.caught_exception}.')
 
 def handle_log_on_processed_save_failed(data_task):
     logger.error(f'Could not write a file to store the raw response data '
-                 f'on given path {data_task.config.processed_dest_path}')
+                 f'on given path {data_task.config.processed_dest_path}. '
+                 f'{data_task.caught_exception}.')
 
 def handle_log_on_raw_save_succeeded(data_task):
     logger.success(f'File with raw json response data successfully created '
