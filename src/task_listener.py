@@ -13,8 +13,8 @@ def handle_tasks_on_config_done(data_task):
     setattr(data_task, 'client', client)
     
     client.request_cards()
-    
-    if data_task.config.raw_dest_path:
+        
+    if data_task.config.raw_dest_path and data_task.status_ok:
         client.save_raw_response()
         
 def handle_tasks_on_request_done(data_task):
