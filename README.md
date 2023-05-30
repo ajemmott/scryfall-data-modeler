@@ -19,3 +19,9 @@ $ python /path/to/script/main.py "set:stx -is:rebalanced" /output/path/paper-stx
 Currently the output file will be created as a csv file where every card face is treated as a separate row and all the image_uris have a separate column.
 
 Additional functionality is provided by adding the -r option which enables the option to store the response data as given by the api (without any structuring by my script other than aggregating the pages of the response) in a json file in the given path. 
+
+## What next for this project
+
+I plan to keep improving the functionality and implementation of this tool with time but i'm not on a strict timeline to do so. 
+
+I'd love to recieve any sort of feedback or attend any reasonable request about the software, so feel free to reach out. 
