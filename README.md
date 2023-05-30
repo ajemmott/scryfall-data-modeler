@@ -21,7 +21,7 @@ Currently the output file will be created as a csv file where every card face is
 Additional functionality is provided by adding the -r option which enables the option to store the response data as given by the api (without any structuring by my script other than aggregating the pages of the response) in a json file in the given path. 
 
 Check the -h option for a more detailed explanation.
-## What next for this project
+## Whats next for this project
 
 I plan to keep improving the functionality and implementation of this tool with time but i'm not on a strict timeline to do so. 
 
