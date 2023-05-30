@@ -17,7 +17,8 @@ def handle_log_on_bad_request(data_task):
 
 def handle_log_on_warnings_found(data_task):
     output = StringIO()
-    output.write('Query successful. The following warnings were noted on the query response:')
+    output.write('Query successful. The following warnings were noted on the '
+                 'query response:')
     
     for index, warning in data_task.client.response_warnings:
         output.write(f'\n\t{index + 1}: {warning}')
@@ -25,7 +26,8 @@ def handle_log_on_warnings_found(data_task):
     logger.warning(output.getvalue())
     
 def handle_log_on_response_ok(data_task):
-    logger.success('Query successful. No warnings were given on the query response.')
+    logger.success('Query successful. No warnings were given on the query'
+                   'response.')
         
 def handle_log_on_raw_save_failed(data_task):
     logger.error(f'Could not write a file to store the raw response data '
