@@ -16,7 +16,7 @@ For example, if you wanted to see all the cards from Strixhaven excluding the al
 $ python /path/to/script/main.py "set:stx -is:rebalanced" /output/path/paper-stx.csv
 ```
 
-Currently the output file will be created as a csv file where every card face is treated as a separate row and all the image_uris have a separate column.
+Currently the output file will be created as a csv file where every card face is treated as a separate row and all the image_uris have a separate column. Separate columns will be created for supertypes (legendary, basic, or snow) and types( creature, artifact, planeswalker, battle, etc.) Separate columns will also be created for card colors (i.e. `is_white` of `is_blue`).
 
 Additional functionality is provided by adding the -r option which enables the option to store the response data as given by the api (without any structuring by my script other than aggregating the pages of the response) in a json file in the given path. 
 
