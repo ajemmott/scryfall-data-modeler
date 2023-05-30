@@ -1,7 +1,7 @@
 import json
 from requests import get
 from time import sleep
-from rich import inspect
+
 class ApiClient:
     def __init__(self, data_task):
         self.parent_task = data_task
@@ -10,18 +10,26 @@ class ApiClient:
         API_ENDPOINT = 'https://api.scryfall.com/cards/search?q='
         request = API_ENDPOINT + self.parent_task.config.query_string
         
+        self.parent_task.events.on_request_setup(self.parent_task)
+        
         sleep(0.1)
         self.response = get(request)
         response_content = self.response.json()
         
         if not self.response.ok:
             self.parent_task.status_ok = False
+            self.response_details = response_content['details']
             self.parent_task.events.on_bad_request(self.parent_task)
             return
         
         if 'warnings' in response_content.keys():
             self.response_warnings =  enumerate(response_content['warnings'])
             self.parent_task.events.on_warnings_found(self.parent_task)
+        
+        if not self.parent_task.status_ok:
+            return
+        
+        self.parent_task.events.on_response_ok(self.parent_task)
         
         self.response_data = response_content['data']
         
@@ -36,8 +44,9 @@ class ApiClient:
         try:
             with open(self.parent_task.config.raw_dest_path, 'w') as f:
                 f.write(json_data)
-                
-        except Exception:
+            self.parent_task.events.on_raw_save_succeeded(self.parent_task)
+        except Exception as e:
+            self.parent_task.caught_exception = e
             self.parent_task.events.on_raw_save_failed(self.parent_task)
         return
         
