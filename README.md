@@ -6,15 +6,15 @@ This is a tool to perform card data queries via the scryfall API for MTG gamepla
 
 Too make use of this tool you must run main.py as a script from the command line passing the appropiate arguments.
 
-`
+```
 $ python <path-to-main.py> QUERY_STRING OUTPUT_FILE
-`
+```
 
 For example, if you wanted to see all the cards from Strixhaven excluding the alchemy format rebalances and store it in a file called `paper-stx.csv` then the command would look something like this:
 
-`
+```
 $ python /path/to/script/main.py "set:stx -is:rebalanced" /output/path/paper-stx.csv
-`
+```
 
 Currently the output file will be created as a csv file where every card face is treated as a separate row and all the image_uris have a separate column.
 
