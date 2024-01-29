@@ -1,4 +1,4 @@
-# sf-command-line-query
+# Scryfall Card Data ETL Tool
 
 This is a tool to perform card data queries via the scryfall API for MTG gameplay relevant features from the command line, structuring the response to store it locally as a resource for data analysis. 
 
