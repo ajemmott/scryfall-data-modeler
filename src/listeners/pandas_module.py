@@ -1,5 +1,5 @@
 import pandas as pd
-import processor_utils as utils
+import card_logic
 
 
 def handle_pandas_on_processor_init(data_task):
@@ -7,7 +7,7 @@ def handle_pandas_on_processor_init(data_task):
     
     available_cols = [
         col 
-        for col in utils.GAMEPLAY_FEATURES 
+        for col in card_logic.GAMEPLAY_FEATURES 
         if col in data_task.processor.df.columns]
     
     data_task.processor.df = (
@@ -20,15 +20,15 @@ def handle_pandas_on_dfcs_found(data_task):
     data_task.processor.df = (
         data_task.processor.df
             .apply(
-               utils.set_face_order,
+               card_logic.set_face_order,
                axis='columns')
             .explode(['card_faces','face_type'])
             .apply(
-               utils.extract_card_face_features,
+               card_logic.extract_card_face_features,
                axis='columns',
-               features=utils.CARD_FACE_FEATURES)
+               features=card_logic.CARD_FACE_FEATURES)
             .apply(
-               utils.set_mdfc_cmc,
+               card_logic.set_mdfc_cmc,
                axis='columns')
             .drop(columns='card_faces')
             .reset_index(drop=True))
@@ -39,21 +39,21 @@ def handle_pandas_on_unpacking_trigger(data_task):
     data_task.processor.df = (
         data_task.processor.df
             .apply(
-                utils.extract_image_uris,
+                card_logic.extract_image_uris,
                 axis='columns')
             .drop(
                 columns='image_uris')
             .apply(
-                utils.parse_type_line,
-                type_map=utils.TYPE_MAP,
+                card_logic.parse_type_line,
+                type_map=card_logic.TYPE_MAP,
                 axis='columns')
             .apply(
-                utils.parse_colors,
-                color_map=utils.COLOR_MAP,
+                card_logic.parse_colors,
+                color_map=card_logic.COLOR_MAP,
                 axis='columns'))
     
-    flag_cols = (list(utils.TYPE_MAP.values())
-                 + list(utils.COLOR_MAP.values()))
+    flag_cols = (list(card_logic.TYPE_MAP.values())
+                 + list(card_logic.COLOR_MAP.values()))
     
     availabe_cols = [
         col
@@ -71,10 +71,17 @@ def handle_pandas_on_save_data_trigger(data_task):
         data_task.processor.df.to_csv(
             data_task.config.processed_dest_path,
             index=False)
-        data_task.events.on_processed_save_succeeded(data_task)
+        # data_task.events.on_processed_save_succeeded(data_task)
+        
     except Exception as e:
-        data_task.caught_exception = e
-        data_task.events.on_processed_save_failed(data_task)
+        data_task.status.caught_exception = e
+        
+        data_task.status.set_flag(
+                flag_type='logic',
+                flag_name='DO_REPORT_SAVE_FAILED',
+                flag_value=True
+            )
+        
 
 def setup_pandas_event_handlers(events):
     events.on_processor_init += handle_pandas_on_processor_init

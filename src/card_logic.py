@@ -10,7 +10,7 @@ CARD_FACE_FEATURES = ['image_uris', 'loyalty','mana_cost',
                       'colors','power','name','toughness','type_line',
                       'defense', 'oracle_text']
 
-RELEVANT_TYPES =['Snow','Legendary','Instant','Creature',
+RELEVANT_TYPES = ['Snow','Legendary','Instant','Creature',
                         'Battle','Enchantment','Artifact','Land','Sorcery',
                         'Planeswalker']
 

@@ -1,8 +1,8 @@
-from data_task import DataTask
+from task_scheduler import TaskScheduler
 
 def main():
-    data_task = DataTask()
-    data_task.start()
+    scheduler = TaskScheduler()
+    scheduler.run_event_loop()
     
 if __name__ == '__main__':
     main()
