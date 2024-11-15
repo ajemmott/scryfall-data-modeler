@@ -1,6 +1,8 @@
-# The Melting Pot Card Data ETL Tool
+# Scryfall Card Data Modeler
 
-This is a tool to perform card data queries via the scryfall API for MTG gameplay relevant features from the command line, structuring the response to store it locally as a resource for data analysis. 
+Magic: The Gathering (MTG) is a massively popular tabletop and digital trading card game with more than thirty years of history and development. As such, its designers are pushed to create paradigm-shifting gamepieces and mechanics that keep the game fresh and interesting for it's playerbase. This has lead to an expansive pool of gamepieces from which players can creatively choose to put together and play. The thing is, with so many gamepieces available, it is increasingly challenging and time-consuming to try to analyze and compare the properties of large batches of cards. Even with software tools, there so much diversity in how cards are designed that for at least every couple of months (past or future) a slightly different program might need to be coded to account for a given mechanic or card type.
+
+With this tool I provide a **rough framework**, based on the observer design pattern, that uses events in order to flexibly coordinate how a set of software modules need to handle card data (obtained from a request to Scryfall's API) to attain the relevant features for a given use case while keeping a detailed log of the process. 
 
 ## Usage
 
@@ -21,8 +23,3 @@ Currently the output file will be created as a csv file where every card face is
 Additional functionality is provided by adding the -r option which enables the option to store the response data as given by the api (without any structuring by my script other than aggregating the pages of the response) in a json file in the given path. 
 
 Check the -h option for a more detailed explanation.
-## Whats next for this project
-
-I plan to keep improving the functionality and implementation of this tool with time but i'm not on a strict timeline to do so. 
-
-I'd love to recieve any sort of feedback or attend any reasonable request about the software, so feel free to reach out. 
