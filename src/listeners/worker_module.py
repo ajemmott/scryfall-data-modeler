@@ -33,7 +33,7 @@ def handle_tasks_on_transform_done(data_task):
     if data_task.status.logic_indicators['DO_PROCESSED_MKDIR']:
         data_task.processor.create_missing_folder()
     
-    if data_task.config.raw_dest_path and data_task.status.test_integrity_compromised():
+    if data_task.config.raw_dest_path and not data_task.status.test_integrity_compromised():
         data_task.client.save_raw_response()
         
     data_task.processor.save_structured_data()
