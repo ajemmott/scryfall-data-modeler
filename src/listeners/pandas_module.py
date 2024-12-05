@@ -22,7 +22,7 @@ def handle_pandas_on_dfcs_found(data_task):
             .apply(
                card_logic.set_face_order,
                axis='columns')
-            .explode(['card_faces','face_type'])
+            .explode(['card_faces','is_castable_face','is_front_face'])
             .apply(
                card_logic.extract_card_face_features,
                axis='columns',
@@ -46,24 +46,17 @@ def handle_pandas_on_unpacking_trigger(data_task):
             .apply(
                 card_logic.parse_type_line,
                 type_map=card_logic.TYPE_MAP,
-                axis='columns')
+                axis='columns'))
+    
+    data_task.processor.df.loc[:,'colors'] = data_task.processor.df['colors'].fillna(0)
+
+    data_task.processor.df = (
+        data_task.processor.df
             .apply(
                 card_logic.parse_colors,
                 color_map=card_logic.COLOR_MAP,
                 axis='columns'))
     
-    flag_cols = (list(card_logic.TYPE_MAP.values())
-                 + list(card_logic.COLOR_MAP.values()))
-    
-    availabe_cols = [
-        col
-        for col in flag_cols
-        if col in data_task.processor.df.columns]
-    
-    for col in availabe_cols:
-        data_task.processor.df[col] = (
-            ~ data_task.processor.df[col].isna())
-        
     data_task.processor.df.info()
     
 def handle_pandas_on_save_data_trigger(data_task):
