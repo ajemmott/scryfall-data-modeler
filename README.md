@@ -45,11 +45,8 @@ When modeling the data obtained via Scryfall's api there are two main ways in wh
 
 Usually any variation of the traditional card layout suggests a different play pattern and thus a slightly different way of modeling its data in order to keep a uniform schema that allows for comparison with other gamepieces. The most common examples of alternate layouts are multiface cards, which can be presented with a transform, modal, adventure, and meld layouts among others. 
 
-![](/readme-assets/layout-modeling-mock.jpg)
+In order to maintain a homogenous representation of multiface cards and single face cards we shift our attention form card objects to card faces. In other words, each face of a multiface card is observed independently in the data and the `is_castable_face` and `is_front_face` features are added to describe the nature of each independent face. `is_castable_face` is True when the labeled face can be played independently of it's other face when in hand. and `is_front_face` is True when the labeled face is the front face of the card, as this can be relevant for certain in-game interactions.
 
-In order to maintain a homogenous representation of multiface cards and single face cards we shift our attention form card objects to card faces. In other words, each face of a multiface card is observed independently in the data and the `is_castable_face` and `is_front_face` features are added to describe the nature of each independent face. `is_castable_face`, is True when the labeled face can be played independently of it's other face when in hand. and `is_front_face` is True when the labeled face is the front face of the card, as this can be relevant for certain in-game interactions.
-
-![]
 
 ### 3.2. Encoded nominal features
 
@@ -58,8 +55,6 @@ Categorical features that take a reasonable number of nominal values are to be O
 #### Card Color
 
 Given the five base colors in MTG: white (W), blue (U), black (B), red (R), and green (G); cards can be identified as being monocolored, multicolored or colorless. 
-
-![](/readme-assets/card-color-intro.jpg)
 
 These colors are represented in the data with a string that contains the letter that represents each color (or none if colorless).
 
